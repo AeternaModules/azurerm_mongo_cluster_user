@@ -6,9 +6,12 @@ resource "azurerm_mongo_cluster_user" "mongo_cluster_users" {
   object_id              = each.value.object_id
   principal_type         = each.value.principal_type
 
-  role {
-    database = each.value.role.database
-    name     = each.value.role.name
+  dynamic "role" {
+    for_each = each.value.role
+    content {
+      database = role.value.database
+      name     = role.value.name
+    }
   }
 }
 

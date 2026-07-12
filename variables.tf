@@ -16,10 +16,10 @@ EOT
     mongo_cluster_id       = string
     object_id              = string
     principal_type         = string
-    role = object({
+    role = list(object({
       database = string
       name     = string
-    })
+    }))
   }))
 }
 
