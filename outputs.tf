@@ -1,3 +1,7 @@
+output "mongo_cluster_users_id" {
+  description = "Map of id values across all mongo_cluster_users, keyed the same as var.mongo_cluster_users"
+  value       = { for k, v in azurerm_mongo_cluster_user.mongo_cluster_users : k => v.id }
+}
 output "mongo_cluster_users_identity_provider_type" {
   description = "Map of identity_provider_type values across all mongo_cluster_users, keyed the same as var.mongo_cluster_users"
   value       = { for k, v in azurerm_mongo_cluster_user.mongo_cluster_users : k => v.identity_provider_type }
