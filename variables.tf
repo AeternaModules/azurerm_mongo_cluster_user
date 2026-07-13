@@ -21,5 +21,13 @@ EOT
       name     = string
     }))
   }))
+  validation {
+    condition = alltrue([
+      for k, v in var.mongo_cluster_users : (
+        length(v.role) >= 1
+      )
+    ])
+    error_message = "Each role list must contain at least 1 items"
+  }
 }
 
